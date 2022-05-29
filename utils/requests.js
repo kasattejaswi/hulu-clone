@@ -31,7 +31,7 @@ export default {
     },
     fetchSciFi: {
         title: "Sci-Fi",
-        url: `?api_key=${API_KEY}&with_genres=878`,
+        url: `/discover/movie?api_key=${API_KEY}&with_genres=878`,
     },
     fetchWestern: {
         title: "Western",

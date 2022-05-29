@@ -21,10 +21,11 @@ export default function Home({ results }) {
 
 export async function getServerSideProps(context) {
     const genre = context.query.genre;
+    console.log(genre);
+    let url = `https://api.themoviedb.org/3${requests[genre]?.url || requests.fetchTrending}`
+    console.log(url)
     const request = await fetch(
-        `https://api.themoviedb.org/3${
-            requests[genre]?.url || requests.fetchTrending
-        }`
+        url
     ).then((res) => res.json());
     return {
         props: {
