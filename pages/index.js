@@ -21,18 +21,10 @@ export default function Home({ results }) {
 
 export async function getServerSideProps(context) {
     const genre = context.query.genre;
-    console.log(genre);
-    let url = `https://api.themoviedb.org/3${
-        requests[genre]?.url || requests.fetchTrending
-    }`;
-    console.log(url);
-    const request = await fetch(url, {
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "User-Agent":
-                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:100.0) Gecko/20100101 Firefox/100.0",
-        },
-    }).then((res) => {
+    let url = requests[genre]
+        ? `https://api.themoviedb.org/3${requests[genre].url}`
+        : `https://api.themoviedb.org/3${requests.fetchTrending.url}`;
+    const request = await fetch(url).then((res) => {
         return res.json();
     });
     return {
